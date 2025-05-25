@@ -1,6 +1,11 @@
 package com.douglasmatosdev.services;
 
+import com.douglasmatosdev.data.dto.PersonDTO;
 import com.douglasmatosdev.exception.ResourceNotFoundException;
+
+import static com.douglasmatosdev.mapper.ObjectMapper.parseListObjects;
+import static com.douglasmatosdev.mapper.ObjectMapper.parseObject;
+
 import com.douglasmatosdev.model.Person;
 import com.douglasmatosdev.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -20,25 +25,29 @@ public class PersonServices {
     @Autowired
     PersonRepository repository;
 
-    public List<Person> findAll() {
-        logger.info("Finding All People!");
+    public List<PersonDTO> findAll() {
+        logger.info("Finding All Person!");
 
-        return repository.findAll();
+        return parseListObjects(repository.findAll(), PersonDTO.class);
     }
 
-    public Person findById(Long id) {
+    public PersonDTO findById(Long id) {
         logger.info("Finding one Person!");
 
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+        var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+
+        return parseObject(entity, PersonDTO.class);
     }
 
-    public Person create(Person person) {
+    public PersonDTO create(PersonDTO person) {
         logger.info("Creating one Person!");
 
-        return repository.save(person);
+        var entity = parseObject(person, Person.class);
+
+        return parseObject(repository.save(entity), PersonDTO.class);
     }
 
-    public Person update(Person person) {
+    public PersonDTO update(PersonDTO person) {
         logger.info("Updating one Person!");
 
         Person entity = repository.findById(person.getId())
@@ -49,7 +58,7 @@ public class PersonServices {
         entity.setGender(person.getGender());
         entity.setAddress(person.getAddress());
 
-        return repository.save(person);
+        return parseObject(repository.save(entity), PersonDTO.class);
     }
 
     public void delete(Long id) {
