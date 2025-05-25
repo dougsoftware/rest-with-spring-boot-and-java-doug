@@ -1,11 +1,13 @@
 package com.douglasmatosdev.services;
 
-import com.douglasmatosdev.data.dto.PersonDTO;
+import com.douglasmatosdev.data.dto.v1.PersonDTO;
+import com.douglasmatosdev.data.dto.v2.PersonDTOV2;
 import com.douglasmatosdev.exception.ResourceNotFoundException;
 
 import static com.douglasmatosdev.mapper.ObjectMapper.parseListObjects;
 import static com.douglasmatosdev.mapper.ObjectMapper.parseObject;
 
+import com.douglasmatosdev.mapper.custom.PersonMapper;
 import com.douglasmatosdev.model.Person;
 import com.douglasmatosdev.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -24,6 +26,9 @@ public class PersonServices {
 
     @Autowired
     PersonRepository repository;
+
+    @Autowired
+    PersonMapper converter;
 
     public List<PersonDTO> findAll() {
         logger.info("Finding All Person!");
@@ -45,6 +50,14 @@ public class PersonServices {
         var entity = parseObject(person, Person.class);
 
         return parseObject(repository.save(entity), PersonDTO.class);
+    }
+
+    public PersonDTOV2 createV2(PersonDTOV2 person) {
+        logger.info("Creating one Person V2!");
+
+        var entity = converter.convertDTOtoEntity(person);
+
+        return converter.convertEntityToDTO(repository.save(entity));
     }
 
     public PersonDTO update(PersonDTO person) {
