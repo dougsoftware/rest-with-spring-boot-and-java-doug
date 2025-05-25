@@ -13,3 +13,7 @@ spring:
       hibernate:
       show-sql: false
     open-in-view: false
+loggin:
+  level:
+#    root: WARN
+#    com.douglasmatosdev: DEBUG
