@@ -1,4 +1,4 @@
-package com.douglasmatosdev.data.dto.v1;
+package com.douglasmatosdev.data.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
