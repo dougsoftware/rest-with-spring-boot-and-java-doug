@@ -27,7 +27,8 @@ public class WebConfig implements WebMvcConfigurer {
                 .useRegisteredExtensionsOnly(false)
                 .defaultContentType(MediaType.APPLICATION_JSON)
                 .mediaType("json", MediaType.APPLICATION_JSON)
-                .mediaType("xml", MediaType.APPLICATION_XML);
+                .mediaType("xml", MediaType.APPLICATION_XML)
+                .mediaType("yaml", MediaType.APPLICATION_YAML);
 
         // Via HEADER PARAM http://localhost:8080/api/person/v1/2
     }

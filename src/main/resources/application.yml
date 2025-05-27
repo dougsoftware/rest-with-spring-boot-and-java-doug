@@ -15,5 +15,6 @@ spring:
     open-in-view: false
 logging:
   level:
-#    root: INFO
-    com.douglasmatosdev: DEBUG
+    root: INFO
+#    root: WARN
+#    com.douglasmatosdev: DEBUG
