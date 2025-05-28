@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "815a28b1-0b66-459e-8d66-722af88a0733",
+		"name": "Spring Boot 2025 - Erudio",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "17512105"
+	},
+	"item": [
+		{
+			"name": "person",
+			"item": [
+				{
+					"name": "person by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/person/v1/1"
+					},
+					"response": []
+				},
+				{
+					"name": "delete person",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/api/person/v1/6"
+					},
+					"response": []
+				},
+				{
+					"name": "all persons",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/api/person/v1"
+					},
+					"response": []
+				},
+				{
+					"name": "all persons - XML - Query Param",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/person/v1?mediaType=xml",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"person",
+								"v1"
+							],
+							"query": [
+								{
+									"key": "mediaType",
+									"value": "xml"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "all persons - XML - Header Param",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8080/api/person/v1"
+					},
+					"response": []
+				},
+				{
+					"name": "all persons - YAML - Header Param",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/yaml",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8080/api/person/v1"
+					},
+					"response": []
+				},
+				{
+					"name": "create person",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Joanna\",\n    \"lastName\": \"Matos\",\n    \"gender\": \"Female\",\n    \"address\": \"Rio de Janeiro\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/person/v1"
+					},
+					"response": []
+				},
+				{
+					"name": "createv2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Joanna\",\n    \"birthDay\": \"2016-09-09\",\n    \"lastName\": \"Matos\",\n    \"gender\": \"Female\",\n    \"address\": \"Rio de Janeiro\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/person/v2"
+					},
+					"response": []
+				},
+				{
+					"name": "update person",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\n        \"id\": 4,\n        \"firstName\": \"Joanna\",\n        \"lastName\": \"da Silva Matos\",\n        \"address\": \"Duque de Caxias, Rio de Janeiro - Brazil\",\n        \"gender\": \"Female\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/api/person/v1"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "logs",
+			"item": [
+				{
+					"name": "test",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/test"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
