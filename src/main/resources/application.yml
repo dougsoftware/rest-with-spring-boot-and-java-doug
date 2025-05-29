@@ -18,3 +18,8 @@ logging:
     root: INFO
 #    root: WARN
 #    com.douglasmatosdev: DEBUG
+
+spring-doc:
+    paths-to-match: /api/**/v1/**
+    swagger-ui:
+        user-root-path: true
