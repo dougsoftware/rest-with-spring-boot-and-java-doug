@@ -2,6 +2,7 @@ package com.douglasmatosdev.services;
 
 import com.douglasmatosdev.controllers.PersonController;
 import com.douglasmatosdev.data.dto.PersonDTO;
+import com.douglasmatosdev.exception.RequiredObjectIsNullException;
 import com.douglasmatosdev.exception.ResourceNotFoundException;
 
 import static com.douglasmatosdev.mapper.ObjectMapper.parseListObjects;
@@ -18,12 +19,10 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class PersonServices {
 
-    private final AtomicLong counter = new AtomicLong();
     private Logger logger = LoggerFactory.getLogger(PersonServices.class.getName());
 
     @Autowired
@@ -54,6 +53,8 @@ public class PersonServices {
     public PersonDTO create(PersonDTO person) {
         logger.info("Creating one Person!");
 
+        if (person == null) throw new RequiredObjectIsNullException();
+
         var entity = parseObject(person, Person.class);
 
         var dto = parseObject(repository.save(entity), PersonDTO.class);
@@ -65,6 +66,8 @@ public class PersonServices {
 
     public PersonDTO update(PersonDTO person) {
         logger.info("Updating one Person!");
+
+        if (person == null) throw new RequiredObjectIsNullException();
 
         Person entity = repository.findById(person.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
